@@ -98,3 +98,34 @@ exports.addOccupation = function (req, res, next) {
     personalApi.occupations.push(addingOccupation);
     res.status(200).json({ occupations: personalApi.occupations });
 };
+
+/** SKILLS */
+exports.getSkills = function (req, res, next) {
+    var skills = personalApi.skills;
+    if (req.query.experience) {
+        var expLvl = req.query.experience;
+        var filteredSkills = [];
+        for (var i = 0; i < skills.length; i++) {
+            var currentSkill = skills[i];
+            if (currentSkill.eperience === expLvl) {
+                filteredSkills.push(currentSkill);
+            }
+        }
+        res.status(200).json({ skills: filteredSkills });
+    } else {
+        res.status(200).json({ skills: personalApi.skills });
+    }
+};
+
+exports.postSkills = function (req, res, next) {
+    var id = req.id;
+    var newSkill = req.body;
+    newSkill.id = id;
+    personalApi.skills.push(newSkill);
+    res.status(200).json({skills: personalApi.skills});    
+};
+
+/** SECRETS */
+exports.getSecrets = function (req, res, next) {
+    res.status(200).json({secrets: "Is it secret, is it safe?"});
+};
