@@ -1,14 +1,21 @@
-var express = require('express')
+var express = require('express');
 var bodyParser = require('body-parser');
-var middleware = require('./controllers/middleware.js');
-var mainCtrl = require('./controllers/mainCtrl.js');
+var mainCtrl = require('./interface/js/mainCtrl.js');
+var middleware = require('./interface/js/middleware.js');
 
-var port = 5555;
+var port = 3000;
 
 var app = express();
 
-app.use(bodyParser.json());
-app.use(middleware.addHeader);
+app.use(bodyParser.JSON());
+app.use(middleware.addHeaders);
+
+app.get('/name', middleware.getName);
+app.get('/location', middleware.getLocation);
+app.get('/occupations', middleware.getOccupations);
+app.get('/occupations/latest', middleware.getLatestOccupation);
+app.get('/hobbies', middleware.getHobbies);
+app.get('/hobbies/:type', middleware.getHobbyType);
 
 app.listen(port, function (){
     console.log("Listening on port, " + port)
