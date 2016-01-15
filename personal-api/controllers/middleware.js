@@ -1,3 +1,5 @@
+var personalApi = require('');
+
 module.exports = {}
 
 exports.myFunction = function (req, res) {};
