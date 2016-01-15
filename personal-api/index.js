@@ -11,7 +11,7 @@ var app = express();
 app.use(bodyParser.JSON());
 app.use(middleware.addHeaders);
 
-// GET //
+// GET with GET //
 app.get('/name', mainCtrl.getName);
 app.get('/location', mainCtrl.getLocation);
 app.get('/occupations', mainCtrl.getOccupations);
@@ -23,7 +23,7 @@ app.get('/hobbies/:type', middleware.getHobbiesByType);
 app.put('/name', middleware.updateName);
 app.put('/location', mainCtrl.updateLocation);
 
-// UPDATE with POST //
+// ADD with POST //
 app.post('/hobbies', mainCtrl.updateHobbies);
 app.postt('/occupations', mainCtrl.updateOccupations);
 
